@@ -12,10 +12,20 @@ class InfiniteCollectionView: UICollectionView {
     private var dataSourceProxy: InfiniteDataSourceProxy?
     private var delegateProxy: InfiniteDelegateProxy?
     
+    override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
+        super.init(frame: frame, collectionViewLayout: layout)
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
     // MARK: - Override
     override weak var dataSource: UICollectionViewDataSource? {
         set {
-            dataSourceProxy = InfiniteDataSourceProxy(forwardingObject: newValue, infiniteCollectionView: self)
+            dataSourceProxy = InfiniteDataSourceProxy(forwardingObject: newValue)
             super.dataSource = dataSourceProxy
         }
         
@@ -26,7 +36,7 @@ class InfiniteCollectionView: UICollectionView {
     
     override weak var delegate: UICollectionViewDelegate? {
         set {
-            delegateProxy = InfiniteDelegateProxy(forwardingObject: newValue, infiniteCollectionView: self)
+            delegateProxy = InfiniteDelegateProxy(forwardingObject: newValue)
             super.delegate = delegateProxy
         }
         
@@ -34,10 +44,14 @@ class InfiniteCollectionView: UICollectionView {
             return super.delegate
         }
     }
-    
-    // MARK: - Internal
+}
+
+// MARK: - Internal
+extension InfiniteCollectionView {
     func scrollToCenter() {
-        guard dataSourceProxy?.numberOfSections(in: self) ?? 0 > 0 else { return }
+        guard dataSourceProxy?.numberOfSections(in: self) ?? 0 > 0,
+              dataSourceProxy?.collectionView(self, numberOfItemsInSection: 1) ?? 0 > 0
+        else { return }
         scrollToItem(at: IndexPath(item: 0, section: 1), at: .centeredHorizontally, animated: false)
     }
     
@@ -49,48 +63,13 @@ class InfiniteCollectionView: UICollectionView {
         let numberOfSections = dataSourceProxy?.numberOfSections(in: self) ?? 1
         return  sectionIndex % numberOfSections
     }
-    
-    // MARK: - Private
-    private func centerScrollView(_ scrollView: UIScrollView) {
-        let pageWidth = Float(collectionViewLayout.collectionViewContentSize.width / 3)
-        let xOffset = Float(scrollView.contentOffset.x)
-        if xOffset > 2 * pageWidth {
-            var offset = scrollView.contentOffset
-            offset.x = CGFloat(xOffset - (2 * pageWidth) + pageWidth)
-            scrollView.contentOffset = offset
-        } else if xOffset < pageWidth {
-            var offset = scrollView.contentOffset
-            offset.x = CGFloat(xOffset + pageWidth)
-            scrollView.contentOffset = offset
+}
+
+// MARK: - Private
+extension InfiniteCollectionView {
+    private func setup() {
+        if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
+            flowLayout.scrollDirection = .horizontal
         }
     }
 }
-
-// MARK: - UIScrollViewDelegate
-extension InfiniteCollectionView {
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        centerScrollView(scrollView)
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        centerScrollView(scrollView)
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-extension InfiniteCollectionView: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return dataSourceProxy?.forwardingObject?.collectionView(self, cellForItemAt: indexPath) ?? UICollectionViewCell()
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dataSourceProxy?.forwardingObject?.collectionView(self, numberOfItemsInSection: section) ?? 0
-    }
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return (dataSourceProxy?.forwardingObject?.numberOfSections?(in: self) ?? 0) * 3
-    }
-}
-
-// MARK: - UICollectionViewDelegate
-extension InfiniteCollectionView: UICollectionViewDelegate {}

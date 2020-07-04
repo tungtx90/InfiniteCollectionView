@@ -15,6 +15,8 @@
 		DD84CDE6226AE4F90064C306 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD84CDE5226AE4F90064C306 /* Assets.xcassets */; };
 		DD84CDE9226AE4F90064C306 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD84CDE7226AE4F90064C306 /* LaunchScreen.storyboard */; };
 		DD84CDF3226AE58D0064C306 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD84CDF2226AE58D0064C306 /* CollectionCell.swift */; };
+		DDC335CC24B0A58B00EBCA34 /* InfiniteDataSourceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC335CB24B0A58B00EBCA34 /* InfiniteDataSourceProxy.swift */; };
+		DDC335CE24B0A5C400EBCA34 /* InfiniteDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDC335CD24B0A5C400EBCA34 /* InfiniteDelegateProxy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		DD84CDE8226AE4F90064C306 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD84CDEA226AE4F90064C306 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD84CDF2226AE58D0064C306 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		DDC335CB24B0A58B00EBCA34 /* InfiniteDataSourceProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteDataSourceProxy.swift; sourceTree = "<group>"; };
+		DDC335CD24B0A5C400EBCA34 /* InfiniteDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteDelegateProxy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,8 @@
 			children = (
 				DD60ADC7227435960036DD3E /* InfiniteCollectionView.swift */,
 				DD60ADC922749B1B0036DD3E /* InfiniteCollectionViewProxy.swift */,
+				DDC335CB24B0A58B00EBCA34 /* InfiniteDataSourceProxy.swift */,
+				DDC335CD24B0A5C400EBCA34 /* InfiniteDelegateProxy.swift */,
 			);
 			path = InfiniteCollectionView;
 			sourceTree = "<group>";
@@ -108,7 +114,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = tungtran;
 				TargetAttributes = {
 					DD84CDDA226AE4F80064C306 = {
@@ -155,6 +161,8 @@
 				DD60ADC8227435960036DD3E /* InfiniteCollectionView.swift in Sources */,
 				DD84CDE1226AE4F80064C306 /* ViewController.swift in Sources */,
 				DD84CDDF226AE4F80064C306 /* AppDelegate.swift in Sources */,
+				DDC335CE24B0A5C400EBCA34 /* InfiniteDelegateProxy.swift in Sources */,
+				DDC335CC24B0A58B00EBCA34 /* InfiniteDataSourceProxy.swift in Sources */,
 				DD60ADCA22749B1B0036DD3E /* InfiniteCollectionViewProxy.swift in Sources */,
 				DD84CDF3226AE58D0064C306 /* CollectionCell.swift in Sources */,
 			);
@@ -208,6 +216,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -269,6 +278,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -305,6 +315,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L6LBTU9G74;
 				INFOPLIST_FILE = InfiniteCollectionView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -323,6 +334,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L6LBTU9G74;
 				INFOPLIST_FILE = InfiniteCollectionView/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

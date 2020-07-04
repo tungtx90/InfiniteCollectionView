@@ -18,10 +18,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        collectionView.isPagingEnabled = true
+        
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.reloadData()
-        collectionView.scrollToCenter()
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+            self.collectionView.scrollToCenter()
+        }
     }
 }
 
@@ -47,12 +52,23 @@ extension ViewController: UICollectionViewDataSource {
 // MARK: - UICollectionViewDelegate
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("Select!!!!!")
+        print("Select indexPath = \(indexPath.row)")
     }
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return collectionView.frame.size
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+extension ViewController {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
