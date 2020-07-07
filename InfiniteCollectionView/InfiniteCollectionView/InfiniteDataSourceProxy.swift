@@ -19,6 +19,6 @@ final class InfiniteDataSourceProxy: InfiniteCollectionViewProxy<UICollectionVie
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return (forwardingObject?.numberOfSections?(in: collectionView) ?? 0) * 3
+        return (forwardingObject?.numberOfSections?(in: collectionView) ?? 1) * 3
     }
 }
