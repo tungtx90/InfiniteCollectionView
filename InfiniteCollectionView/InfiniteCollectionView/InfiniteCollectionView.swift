@@ -25,8 +25,12 @@ class InfiniteCollectionView: UICollectionView {
     // MARK: - Override
     override weak var dataSource: UICollectionViewDataSource? {
         set {
-            dataSourceProxy = InfiniteDataSourceProxy(forwardingObject: newValue)
-            super.dataSource = dataSourceProxy
+            if let value = newValue {
+                dataSourceProxy = InfiniteDataSourceProxy(forwardingObject: value)
+                super.dataSource = dataSourceProxy
+            } else {
+                super.dataSource = nil
+            }
         }
         
         get {
@@ -36,8 +40,12 @@ class InfiniteCollectionView: UICollectionView {
     
     override weak var delegate: UICollectionViewDelegate? {
         set {
-            delegateProxy = InfiniteDelegateProxy(forwardingObject: newValue)
-            super.delegate = delegateProxy
+            if let value = newValue {
+                delegateProxy = InfiniteDelegateProxy(forwardingObject: value)
+                super.delegate = delegateProxy
+            } else {
+                super.delegate = nil
+            }
         }
         
         get {
