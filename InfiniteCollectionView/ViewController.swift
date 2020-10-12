@@ -50,6 +50,10 @@ extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Select indexPath = \(indexPath.row)")
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        print("End displaying cell")
+    }
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {    

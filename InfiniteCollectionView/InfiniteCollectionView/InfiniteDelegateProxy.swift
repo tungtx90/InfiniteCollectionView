@@ -24,6 +24,10 @@ final class InfiniteDelegateProxy: InfiniteCollectionViewProxy<UICollectionViewD
         (forwardingObject)?.scrollViewDidEndScrollingAnimation?(scrollView)
         scrollToCenter(of: scrollView)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Delegate select item")
+    }
 }
 
 // MARK: - Private

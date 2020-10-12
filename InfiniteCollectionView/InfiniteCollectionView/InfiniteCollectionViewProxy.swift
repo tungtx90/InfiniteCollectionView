@@ -18,7 +18,10 @@ class InfiniteCollectionViewProxy<ProviderType: NSObjectProtocol>: NSObject {
     }
     
     override func forwardingTarget(for aSelector: Selector!) -> Any? {
-        return forwardingObject
+        if forwardingObject?.responds(to: aSelector) == true {
+            return forwardingObject
+        }
+        return super.responds(to: aSelector)
     }
     
     override func responds(to aSelector: Selector!) -> Bool {
